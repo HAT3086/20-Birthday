@@ -1,0 +1,72 @@
+.birthday-page{background:radial-gradient(ellipse at 16% 32%,#cbd6bf4d,transparent 40%),radial-gradient(ellipse at 90% 72%,#cfb8ca38,transparent 42%),#e7e2d7}
+.birthday-shell{max-width:1200px;margin:auto;padding:16px 36px 0;min-height:100dvh}
+.birthday-header{height:58px;display:flex;align-items:center;gap:30px;border-bottom:1px solid #c7cbbb}
+.birthday-back{margin-left:auto;text-decoration:none;font-size:12px;color:#64745a}
+.birthday-music{border:1px solid #b8c1a8;background:#e6e7d8;padding:9px 12px;border-radius:6px;font-size:11px;min-width:108px}
+.birthday-main{position:relative}
+.birthday-party{position:relative;text-align:center;padding:25px 0 20px;isolation:isolate}
+.birthday-eyebrow{font:10px var(--mono);letter-spacing:1.7px;color:#7c8669;margin:0 0 14px}
+.birthday-stamp{display:inline-flex;align-items:center;gap:12px;letter-spacing:1.4px;color:#8b7349;border:1px solid #c9bd9d;background:#eae2cb;padding:7px 14px;border-radius:20px;margin-bottom:14px}
+.birthday-stamp span{color:#a48b4e}
+.birthday-party h1{font-size:clamp(35px,3.4vw,48px);letter-spacing:-1.5px;max-width:100%;overflow-wrap:anywhere}
+.birthday-party[data-long-name=true] h1{font-size:clamp(27px,3vw,41px)}
+.birthday-stage{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);align-items:center;gap:24px;margin:18px 0 0}
+.birthday-scene{position:relative;min-width:0;width:100%;height:354px;display:flex;align-items:center;justify-content:center;border-radius:24px;background:radial-gradient(ellipse at 50% 54%,#dfd1af66,transparent 68%)}
+.birthday-cake-button{width:100%;height:100%;padding:0;background:transparent;border-radius:24px;position:relative;transition:transform .25s ease}
+.birthday-cake-button:hover{filter:none;transform:translateY(-3px)}
+.birthday-cake-button:active{transform:translateY(0) scale(.985)}
+.birthday-scene canvas{display:block;width:100%;height:100%;object-fit:contain;image-rendering:pixelated}
+.cake-halo{position:absolute;width:65%;height:85%;top:8%;left:50%;transform:translateX(-50%);background:radial-gradient(ellipse,#dfc98e80,#e6dab300 70%);border-radius:50%;pointer-events:none;transition:opacity 1s ease,transform 1s ease}
+.birthday-party[data-wished=true] .cake-halo{opacity:.55;transform:translateX(-50%) scale(1.2)}
+.birthday-scene::after{content:'';position:absolute;width:36%;aspect-ratio:1;left:32%;top:21%;border:1px solid #b69a5f;border-radius:50%;opacity:0;pointer-events:none}
+.birthday-party[data-wished=true] .birthday-scene::after{animation:wish-ripple 1.6s ease-out both}
+.birthday-wish{position:relative;padding:30px 30px 28px;text-align:left;min-height:238px;display:flex;flex-direction:column;justify-content:center;border:1px solid #c8bea4;border-radius:5px 22px 5px 22px;background:linear-gradient(120deg,#f1ebdd,#ece5d5);box-shadow:5px 6px 0 #b8b09718;transition:background .6s ease,border-color .6s ease}
+.birthday-wish::after{content:'';position:absolute;inset:8px;border:1px dashed #b6aa8c66;pointer-events:none;border-radius:2px 16px 2px 16px}
+.wish-seal{display:block;color:#ae8667;font:21px var(--serif);margin-bottom:14px;line-height:1}
+.birthday-wish h2{font-size:27px;line-height:1.25;letter-spacing:-.5px;margin:0 0 15px;color:#546b49;text-wrap:balance}
+.birthday-wish p{font-size:13px;line-height:1.85;color:#64715c;margin:0;text-wrap:pretty}
+.birthday-wish p+p{margin-top:13px}
+.birthday-party[data-wished=true] .birthday-wish{background:linear-gradient(120deg,#f3eddf,#eee7d7);border-color:#b39d71}
+.birthday-party[data-wished=true] .wish-seal{color:#a47769}
+.wish-button{margin:16px auto 0;min-width:330px;background:#536d48;box-shadow:0 3px 0 #3d5333;gap:18px;min-height:46px;transition:background .2s ease,box-shadow .2s ease}
+.birthday-party[data-wished=true] .wish-button{background:#e2e6d6;color:#536649;box-shadow:0 2px 0 #b9c3a8;border:1px solid #b9c3a8}
+.birthday-status{font:italic 12px var(--serif);color:#8a8269;margin:13px 0 0;min-height:15px}
+.birthday-confetti{position:absolute;inset:0 -25px;pointer-events:none;overflow:hidden;z-index:2;border-radius:16px}
+.birthday-confetti i{position:absolute;top:-20px;left:var(--x);width:var(--size);height:calc(var(--size)*1.65);background:var(--color);opacity:0;animation:birthday-fall var(--duration) var(--delay) ease-in both;border-radius:1px}
+.birthday-confetti i:nth-child(3n){border-radius:50%;height:var(--size)}
+.birthday-confetti i:nth-child(5n){clip-path:polygon(50% 0,62% 36%,100% 50%,62% 64%,50% 100%,38% 64%,0 50%,38% 36%);width:calc(var(--size)*1.6);height:calc(var(--size)*1.6)}
+.birthday-confetti i:nth-child(7n){width:3px;height:18px;border-radius:3px}
+.birthday-confetti i:nth-child(11n){clip-path:polygon(0 15%,18% 0,38% 0,50% 18%,62% 0,82% 0,100% 15%,100% 45%,50% 100%,0 45%);width:12px;height:11px}
+.birthday-party:not([hidden])>.birthday-stamp,.birthday-party:not([hidden])>h1{animation:birthday-arrive .65s ease both}
+.birthday-party:not([hidden])>.birthday-stage{animation:birthday-arrive .9s .1s ease both}
+.birthday-party[data-wished=true] .birthday-wish{animation:birthday-letter .8s ease both}
+.birthday-party[data-paused=true],.birthday-party[data-paused=true] *{animation-play-state:paused!important}
+@keyframes birthday-arrive{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes birthday-letter{from{opacity:.25;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes wish-ripple{0%{opacity:0;transform:scale(.6)}20%{opacity:.45}100%{opacity:0;transform:scale(2.1)}}
+@keyframes birthday-fall{0%{opacity:0;transform:translateY(0) rotate(0deg)}8%{opacity:.8}90%{opacity:.65}100%{opacity:0;transform:translateY(800px) translateX(var(--drift)) rotate(var(--spin))}}
+.birthday-locked{text-align:center;padding:95px 0}
+.birthday-seal{display:block;font-size:60px;color:#b89c64;margin-bottom:26px}
+.birthday-locked h1{font-size:43px}
+.birthday-locked>p:not(.birthday-eyebrow){font-size:14px;color:#718064;margin:20px 0 30px}
+.birthday-locked .primary-button{width:230px;margin:auto;text-decoration:none}
+@media(max-height:760px){
+  .birthday-shell{padding-top:9px}.birthday-header{height:50px}.birthday-party{padding:16px 0 12px}
+  .birthday-stamp{font-size:9px;padding:5px 12px;margin-bottom:10px}
+  .birthday-party h1{font-size:36px}.birthday-party[data-long-name=true] h1{font-size:29px}
+  .birthday-stage{margin-top:10px;gap:20px}.birthday-scene{height:312px}
+  .birthday-wish{padding:23px 25px;min-height:216px}.birthday-wish h2{font-size:23px;margin-bottom:12px}.birthday-wish p{font-size:12px;line-height:1.8}
+  .wish-seal{font-size:18px;margin-bottom:10px}.birthday-wish p+p{margin-top:10px}
+  .wish-button{margin-top:10px;min-height:42px;padding:11px 18px}.birthday-status{margin-top:10px}
+  .birthday-locked{padding-top:65px}
+}
+@media(max-height:650px){
+  .birthday-party{padding-top:12px}.birthday-stage{margin-top:6px;gap:18px}.birthday-scene{height:285px}
+  .birthday-wish{padding:20px 23px}.birthday-wish h2{font-size:22px}.birthday-wish p{font-size:11.8px;line-height:1.75}
+}
+@media(prefers-reduced-motion:reduce){
+  .birthday-party:not([hidden])>*,.birthday-party[data-wished=true] .birthday-wish,.birthday-party[data-wished=true] .birthday-scene::after{animation:none}
+  .birthday-cake-button,.cake-halo,.birthday-wish{transition:none}.birthday-cake-button:hover,.birthday-cake-button:active{transform:none}
+  .birthday-confetti i{animation:none;opacity:.55;top:var(--rest)}
+}
+@media(max-width:999px){.birthday-shell{display:none}}

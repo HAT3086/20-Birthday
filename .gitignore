@@ -1,0 +1,12 @@
+# dist/ contains the editable game and must remain tracked.
+node_modules/
+.openai/
+.env
+.env.*
+!.env.example
+*.log
+*.tar.gz
+*.zip
+coverage/
+.DS_Store
+Thumbs.db

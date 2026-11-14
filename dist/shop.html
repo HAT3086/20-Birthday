@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head><script type="module" src="./entry-guard.mjs"></script>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#e7e2d7">
+  <meta name="description" content="A little wardrobe for your cat. Preview cat costumes, spend your earned arcade coins, and dress up for Cake.">
+  <title>Costume Shop · Twenty Birthday Arcade</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css"><link rel="stylesheet" href="./laptop.css"><link rel="stylesheet" href="./hub.css"><link rel="stylesheet" href="./shop.css">
+  <script type="module" src="./shop.mjs"></script>
+<link rel="stylesheet" href="./i18n.css"><script type="module" src="./i18n.mjs"></script></head>
+<body class="hub-page shop-page">
+  <svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="icon-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v10m-2-8 2-2 2 2m-4 6 2 2 2-2" fill="none"/></symbol>
+    <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6" fill="none"/></symbol>
+  </svg>
+  <section class="laptop-notice" aria-labelledby="laptop-notice-title"><span class="brand-mark" aria-hidden="true">20<span>✦</span></span><h1 id="laptop-notice-title">Little paws. A bigger screen.</h1><p>Open the wardrobe on a laptop or desktop.<br>Use a browser window at least 1,000 pixels wide.</p></section>
+  <div class="hub-shell shop-shell">
+    <header class="hub-header site-header">
+      <a class="brand" href="./" aria-label="Twenty Birthday Arcade home"><span class="brand-mark">20<span>✦</span></span><span class="brand-words">twenty</span></a>
+      <nav class="arcade-nav" aria-label="Arcade navigation"><a href="./">Arcade</a><a href="./shop.html" aria-current="page">Wardrobe</a></nav>
+      <div class="wallet shop-wallet" aria-label="Available coins"><svg class="icon"><use href="#icon-coin"/></svg><strong id="shop-coins">0</strong><span class="wallet-label">coins</span></div>
+    </header>
+    <main class="hub-main">
+      <section class="hub-intro"><div><h1>Costume shop</h1><p>Choose a breed. Find an outfit.</p></div><span class="adventure-count"><span id="owned-count">1</span> / 7 outfits owned</span></section>
+      <section class="breed-bar" aria-labelledby="breed-title"><div><h2 id="breed-title">Cat breed</h2><span>Always free</span></div><div class="breed-options" id="breed-options" role="group" aria-label="Choose a free cat breed"></div></section>
+      <div class="shop-layout">
+        <section class="fitting-room" aria-labelledby="preview-name">
+          <div class="preview-scene" id="preview-scene"><span class="preview-label">FITTING ROOM</span><canvas id="preview-cat" width="288" height="240" aria-label="Your cat in the original costume"></canvas><span class="preview-floor" aria-hidden="true"></span></div>
+          <div class="preview-details"><h2 id="preview-name">Original</h2><p id="preview-description">No costume. Just your cat.</p><button class="primary-button" id="costume-action" disabled>Equipped ✓</button><p id="costume-hint" class="costume-hint">Ready to play.</p><button class="original-button" id="original-button" hidden>Try original costume</button></div>
+        </section>
+        <section class="costume-grid" id="costume-grid" aria-label="Preview an outfit"></section>
+      </div>
+      <footer class="shop-footer"><p>10 coins per new star · 180 coins unlock every outfit.</p><a href="./snake.html">Play Cake <svg class="icon"><use href="#icon-arrow"/></svg></a></footer>
+      <p class="shop-message" id="shop-message" role="status" aria-live="polite"></p>
+    </main>
+  </div>
+</body>
+</html>

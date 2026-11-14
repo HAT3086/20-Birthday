@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head><script type="module" src="./entry-guard.mjs"></script>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#e7e2d7">
+  <meta name="description" content="Sweet little matches with your cat. Match cat treats, make special candies, and collect three birthday stars in 25 moves.">
+  <title>Candy Cat · Twenty Birthday Arcade</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="./styles.css"><link rel="stylesheet" href="./laptop.css"><link rel="stylesheet" href="./candy.css"><link rel="stylesheet" href="./cat-reactions.css">
+  <script type="module" src="./candy-app.mjs"></script>
+<link rel="stylesheet" href="./i18n.css"><script type="module" src="./i18n.mjs"></script></head>
+<body class="candy-page">
+  <svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="icon-star" viewBox="0 0 24 24"><path d="m12 2.8 2.8 5.7 6.3.9-4.6 4.4 1.1 6.3-5.6-3-5.6 3 1.1-6.3L2.9 9.4l6.3-.9z"/></symbol>
+    <symbol id="icon-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v10m-2-8 2-2 2 2m-4 6 2 2 2-2" fill="none"/></symbol>
+    <symbol id="icon-sound" viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M17 8c2 2 2 6 0 8m3-11c4 4 4 10 0 14" fill="none"/></symbol>
+    <symbol id="icon-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14" fill="none" stroke-width="4"/></symbol>
+    <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6" fill="none"/></symbol>
+  </svg>
+  <section class="laptop-notice" aria-labelledby="laptop-notice-title"><span class="brand-mark" aria-hidden="true">20<span>✦</span></span><h1 id="laptop-notice-title">Little paws. A bigger screen.</h1><p>Open Candy Cat on a laptop or desktop.<br>Use a browser window at least 1,000 pixels wide.</p></section>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Back to the arcade"><span class="brand-mark">20<span>✦</span></span><span class="brand-words">twenty</span></a>
+      <nav class="arcade-nav" aria-label="Arcade navigation"><a href="./" id="home-button">Arcade</a><a href="./shop.html" id="shop-link">Wardrobe</a></nav>
+      <div class="header-actions"><button id="collection-button" class="wallet" aria-label="View collected rewards"><svg class="icon"><use href="#icon-coin"/></svg><strong id="wallet-count">0</strong><span class="wallet-label">coins</span></button><button id="sound-button" class="icon-button" aria-label="Mute sound effects" aria-pressed="true"><svg class="icon"><use href="#icon-sound"/></svg><span class="mute-slash" hidden>/</span></button></div>
+    </header>
+    <main>
+      <section class="intro" aria-labelledby="game-title"><div><h1 id="game-title">Candy Cat</h1><p class="intro-copy">Reach 2,000 points in 25 moves.</p></div><button class="text-button" id="help-button"><span class="help-circle">?</span> How to play <span aria-hidden="true">↗</span></button></section>
+      <div class="game-layout">
+        <section class="game-card" aria-label="Candy Cat game">
+          <div class="candy-toolbar"><div class="candy-score"><span>Score</span><strong id="score-count">0</strong><span class="goal-label">/ 2,000</span></div><div class="candy-moves"><strong id="move-count">25</strong><span>moves</span></div><button class="candy-pause" id="pause-button" aria-label="Pause game" hidden><svg class="icon"><use href="#icon-pause"/></svg></button></div>
+          <div class="candy-board-wrap" id="board-wrap">
+            <div class="candy-grid" id="candy-grid" role="group" aria-label="Treat board. Swap neighboring treats to match three." aria-describedby="board-instructions"></div>
+            <div class="board-overlay" id="game-overlay"><div class="overlay-card"><canvas id="overlay-cat" class="overlay-cat" width="120" height="120" aria-hidden="true"></canvas><h2 id="overlay-title">Something sweet?</h2><p id="overlay-copy">Match three. Make a little magic.<br>25 moves, at your own pace.</p><div class="result-rewards" id="result-rewards" hidden></div><button class="primary-button" id="play-button">Play <svg class="icon"><use href="#icon-arrow"/></svg></button><button class="text-button overlay-secondary" id="overlay-secondary" hidden>Back to arcade</button></div></div>
+            <div class="board-toast" id="board-toast" role="status" hidden></div>
+          </div>
+          <p class="board-instructions" id="board-instructions"><span>Click two treats or drag to swap</span><span><kbd>P</kbd> Pause</span></p>
+        </section>
+        <aside class="sidebar">
+          <section class="cat-profile" id="cat-companion" aria-labelledby="cat-name"><div class="portrait-scene"><canvas id="portrait-canvas" width="240" height="180" aria-label="Your cat in the original costume"></canvas></div><div><h2 id="cat-name">Your cat</h2><p id="cat-reaction">A little sweet tooth.</p></div></section>
+          <section class="star-card" aria-labelledby="stars-title"><div class="section-title-row"><h2 id="stars-title">Your stars</h2><span class="star-fraction"><span id="star-count">0</span><span> / 3</span></span></div>
+            <ol class="milestone-list">
+              <li data-milestone="0"><span class="milestone-star"><svg class="icon"><use href="#icon-star"/></svg></span><div><strong>500 points</strong></div><span class="milestone-reward">+10 <svg class="icon"><use href="#icon-coin"/></svg></span></li>
+              <li data-milestone="1"><span class="milestone-star"><svg class="icon"><use href="#icon-star"/></svg></span><div><strong>1,200 points</strong></div><span class="milestone-reward">+10 <svg class="icon"><use href="#icon-coin"/></svg></span></li>
+              <li data-milestone="2"><span class="milestone-star"><svg class="icon"><use href="#icon-star"/></svg></span><div><strong>2,000 points</strong></div><span class="milestone-reward">+10 <svg class="icon"><use href="#icon-coin"/></svg></span></li>
+            </ol>
+            <div class="next-milestone"><div><span id="next-label">Next star</span><strong id="next-progress">0 / 500</strong></div><div class="progress-track"><div id="milestone-fill"></div></div></div>
+            <p class="candy-best">Best score <strong id="best-count">0</strong></p>
+          </section>
+          <p class="special-note">Match 4 or more for a special treat.</p>
+          <button id="music-button" class="music-button" aria-pressed="false"><span aria-hidden="true">♫</span><span>Music</span><span class="music-switch"><span></span></span></button>
+        </aside>
+      </div>
+      <p class="candy-save" id="save-status" role="status" hidden></p>
+    </main>
+  </div>
+  <dialog id="help-dialog" aria-labelledby="help-title"><button class="dialog-close" data-close="help-dialog" aria-label="Close instructions">×</button><h2 id="help-title">How to play</h2><p data-i18n-block="candy-help-p-0">Swap neighboring candies by clicking or dragging. Match <strong>3 or more</strong> in a row or column. You have <strong>25 moves</strong> and no timer; invalid swaps are free.</p><div class="special-guide"><figure><canvas data-guide="row" width="64" height="64" aria-hidden="true"></canvas><figcaption><strong>4 in a line</strong><br>Striped treat</figcaption></figure><figure><canvas data-guide="rainbow" width="64" height="64" aria-hidden="true"></canvas><figcaption><strong>5 in a line</strong><br>Rainbow treat</figcaption></figure><figure><canvas data-guide="wrapped" width="64" height="64" aria-hidden="true"></canvas><figcaption><strong>L or T match</strong><br>Wrapped treat</figcaption></figure></div><ul><li data-i18n-block="candy-help-li-0">Striped candies clear a row or column. Wrapped candies clear a <strong>3 × 3 area</strong>.</li><li data-i18n-block="candy-help-li-1">Swap a rainbow with a candy to clear its color. Two rainbows clear the whole board.</li><li data-i18n-block="candy-help-li-2">Each candy gives <strong>10 points</strong>. Cascades multiply points by <strong>×2, then ×3</strong> without using another move. The multiplier resets on your next swap.</li><li data-i18n-block="candy-help-li-3">Earn stars at <strong>500, 1,200, and 2,000 points</strong>. Each new star gives <strong>10 coins</strong>, once.</li><li data-i18n-block="candy-help-li-4">Reach <strong>2,000 points</strong> to win. Cascades from your last move finish before the results appear.</li><li data-i18n-block="candy-help-li-5">No possible matches? The board reshuffles for free and keeps your special candies.</li></ul><p data-i18n-block="candy-help-p-1">Keyboard: <strong>arrows</strong> to move, <strong>Enter or Space</strong> to select. <strong>P or Escape</strong> to pause. Switching tabs pauses automatically.</p><button class="primary-button" data-close="help-dialog">Got it</button></dialog>
+  <dialog id="collection-dialog" aria-labelledby="collection-title"><button class="dialog-close" data-close="collection-dialog" aria-label="Close collection">×</button><h2 id="collection-title">Your rewards</h2><div class="collection-totals"><div><svg class="icon"><use href="#icon-star"/></svg><strong id="collection-stars">0 / 3</strong><span>Candy Cat stars</span></div><div><svg class="icon"><use href="#icon-coin"/></svg><strong id="collection-coins">0 / 30</strong><span>Coins collected</span></div></div><p data-i18n-block="candy-rewards-p-0">Each new star gives <strong>10 coins</strong>, once. Rewards stay saved after every round.</p><p class="collection-future" data-i18n-block="candy-rewards-p-1"><a href="./shop.html">Visit the costume shop ↗</a></p><button class="primary-button" data-close="collection-dialog">Back to the game</button></dialog>
+  <div class="sr-only" id="live-announcement" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>

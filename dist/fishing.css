@@ -1,0 +1,19 @@
+.fishing-page{--lake-width:min(820px,calc((100dvh - 240px)*1.6),calc(100vw - 350px))}
+.fishing-page .page-shell{max-width:calc(var(--lake-width) + 340px);min-height:560px}
+.fishing-page .game-layout{grid-template-columns:calc(var(--lake-width) + 26px) 250px;gap:24px}
+.fishing-page .board-wrap{width:var(--lake-width);height:calc(var(--lake-width)*.625);background:#789f9e;border-color:#869a88}
+.fishing-page .board-wrap canvas#game-canvas{display:block;width:100%;height:100%;image-rendering:pixelated;outline-offset:-4px}
+.fishing-page .game-card{border-color:#b3c2b0}
+.fishing-page .intro{gap:14px}.fishing-page .intro>.text-button{align-self:center;margin-left:auto}
+.fishing-page .overlay-card{padding:18px 22px}.fishing-page .overlay-card h2{font-size:27px}.fishing-page .overlay-card p{margin-bottom:15px}.fishing-page .overlay-cat{width:55px;height:55px}
+.fishing-page .star-card{padding-left:16px;padding-right:16px}.fishing-page .points-icon{width:24px;height:24px;color:#b19657;fill:#ccb579;stroke:#9a824b}
+.fishing-page .board-toast{font-size:12px;top:40px;max-width:95%;white-space:normal;text-align:center}
+.fishing-save{font-size:12px;line-height:1.4;color:#965b48;margin:8px 0 0}.fishing-save[hidden]{display:none}
+.fishing-page .board-instructions{justify-content:space-between}.fishing-page .game-scorebar{gap:15px}.fishing-page .score-item>div{gap:9px}
+.boost-strip{position:absolute;bottom:12px;left:12px;display:flex;gap:6px;pointer-events:none}
+.boost-chip{font-size:12px;font-weight:bold;padding:7px 9px;border:1px solid;border-radius:5px;box-shadow:0 2px 4px #35544b20;font-variant-numeric:tabular-nums}
+.boost-chip.speed{color:#695020;background:#f1d88e;border-color:#c1a052}.boost-chip.double{color:#305a3c;background:#b9d5a9;border-color:#7ca26e}.boost-chip.freeze{color:#315b7d;background:#b9dfeb;border-color:#7fadc2}
+.catch-guide{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 8px;margin:18px -8px}
+.catch-guide figure{margin:0;text-align:center;background:#dce2d1;border-radius:7px;padding:4px 0 10px}
+.catch-guide canvas{width:90px;height:60px;image-rendering:pixelated;display:block;margin:auto}.catch-guide figcaption{font-size:12px;color:#47624c}
+@media(max-height:650px){.fishing-page .overlay-card{padding:13px 20px}.fishing-page .overlay-cat{width:39px;height:39px;margin-bottom:3px}.fishing-page .overlay-card h2{font-size:24px;margin:5px 0 9px}.fishing-page .overlay-card p{font-size:12px;line-height:1.5;margin-bottom:13px}.fishing-page .overlay-secondary{margin-top:10px}.fishing-page .result-rewards{margin-bottom:12px}.fishing-page .reward-chip{padding:6px 8px;font-size:11px}.boost-chip{font-size:11px;padding:5px 7px}}

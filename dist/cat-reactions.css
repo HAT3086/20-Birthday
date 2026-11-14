@@ -1,0 +1,29 @@
+.candy-page .cat-profile,.catris-page .cat-profile{transition:background-color .18s,border-color .18s,box-shadow .18s}
+.cat-profile[data-reaction=match],.cat-profile[data-reaction=line]{background:#e2dccd;border-color:#b8a782;box-shadow:inset 0 0 0 1px #c5b38944}
+.cat-profile[data-reaction=combo],.cat-profile[data-reaction=multi-line]{background:#d6dfc9;border-color:#94a87e;box-shadow:inset 0 0 0 1px #a2b28c66}
+.cat-profile[data-reaction=special],.cat-profile[data-reaction=four-lines]{background:#e0d6e2;border-color:#ac98b5;box-shadow:inset 0 0 0 1px #b5a1bd55}
+.cat-profile #cat-reaction{min-height:17px}
+.candy-page .game-layout,.catris-page .game-layout{align-items:stretch}
+.candy-page .sidebar>*,.catris-page .sidebar>*{flex-shrink:0}
+.candy-page #cat-companion,.catris-page #cat-companion{flex:1 0 190px;min-height:190px;height:auto;display:grid;grid-template-rows:minmax(0,1fr) auto;align-items:stretch;gap:6px;padding:10px 12px}
+#cat-companion .portrait-scene{width:100%;height:100%;min-height:0;justify-content:center;align-items:center}
+#cat-companion .portrait-scene canvas{width:100%;height:100%;max-width:208px;max-height:156px;object-fit:contain}
+#cat-companion .portrait-scene::before{height:min(120px,90%);width:auto;aspect-ratio:1;top:50%;transform:translate(-50%,-50%)}
+#cat-companion>div:last-child{min-width:0;text-align:center}
+#cat-companion #cat-name{font-size:22px;line-height:1.05}
+#cat-companion #cat-reaction{max-width:none;margin:5px 0 0;line-height:1.35}
+@media(max-height:720px){
+  .candy-page #cat-companion,.catris-page #cat-companion{flex-basis:112px;min-height:112px;display:flex;align-items:center;gap:8px;padding:8px 12px}
+  #cat-companion .portrait-scene{width:144px;height:108px;flex:0 0 144px}
+  #cat-companion .portrait-scene canvas{width:144px;height:108px}
+  #cat-companion .portrait-scene::before{width:94px;height:94px}
+  #cat-companion>div:last-child{flex:1;text-align:left}
+  #cat-companion #cat-name{font-size:21px}
+  #cat-companion #cat-reaction{font-size:11px}
+}
+@media(max-height:650px){
+  #cat-companion .portrait-scene{width:132px;height:99px;flex-basis:132px}
+  #cat-companion .portrait-scene canvas{width:132px;height:99px}
+  #cat-companion .portrait-scene::before{width:86px;height:86px}
+}
+@media(prefers-reduced-motion:reduce){.candy-page .cat-profile,.catris-page .cat-profile{transition:none}}

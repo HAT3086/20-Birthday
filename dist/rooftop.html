@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head><script type="module" src="./entry-guard.mjs"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#e7e2d7">
+  <meta name="description" content="A little rooftop adventure with your cat. Jump the gaps, find three birthday stars, and reach the finish flag.">
+  <title>Rooftop Run · Twenty Birthday Arcade</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./laptop.css">
+  <link rel="stylesheet" href="./rooftop.css">
+  <script type="module" src="./rooftop-app.mjs"></script>
+<link rel="stylesheet" href="./i18n.css"><script type="module" src="./i18n.mjs"></script></head>
+<body class="rooftop-page">
+  <svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="icon-star" viewBox="0 0 24 24"><path d="m12 2.8 2.8 5.7 6.3.9-4.6 4.4 1.1 6.3-5.6-3-5.6 3 1.1-6.3L2.9 9.4l6.3-.9z"/></symbol>
+    <symbol id="icon-points" viewBox="0 0 24 24"><path d="m12 3 2.5 5.5L21 10l-4.5 4.3.8 6.2-5.3-3-5.3 3 .8-6.2L3 10l6.5-1.5z"/></symbol>
+    <symbol id="icon-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v10m-2-8 2-2 2 2m-4 6 2 2 2-2" fill="none"/></symbol>
+    <symbol id="icon-sound" viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M17 8c2 2 2 6 0 8m3-11c4 4 4 10 0 14" fill="none"/></symbol>
+    <symbol id="icon-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14" fill="none" stroke-width="4"/></symbol>
+    <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6" fill="none"/></symbol>
+    <symbol id="icon-paw" viewBox="0 0 24 24"><ellipse cx="7" cy="6" rx="2" ry="3"/><ellipse cx="17" cy="6" rx="2" ry="3"/><ellipse cx="3" cy="12" rx="2" ry="2.6"/><ellipse cx="21" cy="12" rx="2" ry="2.6"/><path d="M5 19c0-4 4-9 7-9s7 5 7 9c0 4-5 1-7 1s-7 3-7-1"/></symbol>
+  </svg>
+  <section class="laptop-notice" aria-labelledby="laptop-notice-title"><span class="brand-mark" aria-hidden="true">20<span>✦</span></span><h1 id="laptop-notice-title">Little paws. A bigger screen.</h1><p>Open Rooftop Run on a laptop or desktop with a keyboard.<br>This chapter needs a browser window at least 1,000 pixels wide.</p></section>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Back to the arcade"><span class="brand-mark">20<span>✦</span></span><span class="brand-words">twenty</span></a>
+      <nav class="arcade-nav" aria-label="Arcade navigation"><a href="./" id="home-button">Arcade</a><a href="./shop.html" id="shop-link">Wardrobe</a></nav><div class="header-actions">
+        <button id="collection-button" class="wallet" title="View your collected rewards"><svg class="icon"><use href="#icon-coin"/></svg><span id="wallet-count">0</span><span class="wallet-label">coins</span></button>
+        <button id="sound-button" class="icon-button" aria-label="Mute sound effects" aria-pressed="true"><svg class="icon"><use href="#icon-sound"/></svg><span class="mute-slash" hidden>/</span></button>
+      </div>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="game-title">
+        <div><h1 id="game-title">Rooftop Run</h1><p class="intro-copy">Find three stars. Reach the finish.</p></div>
+        <button class="text-button" id="help-button"><span class="help-circle">?</span> How to play <span aria-hidden="true">↗</span></button>
+      </section>
+
+      <div class="game-layout">
+        <section class="game-card" aria-label="Rooftop Run game">
+          <div class="board-wrap" id="board-wrap">
+            <canvas id="game-canvas" width="800" height="500" tabindex="0" aria-label="Rooftop Run course. Left and Right or A and D to move. Space to jump. X to shoot rainbow lasers. P or Escape pauses." aria-describedby="board-instructions"></canvas>
+            <div class="board-overlay" id="game-overlay">
+              <div class="overlay-card" id="overlay-card">
+                <div class="sr-only overlay-tag" id="overlay-tag">A COZY CLASSIC, WITH CATS</div>
+                <canvas id="overlay-cat" class="overlay-cat" width="120" height="120" aria-hidden="true"></canvas>
+                <h2 id="overlay-title">Ready, little explorer?</h2>
+                <p id="overlay-copy">Find secret boxes. Stun, then stomp.</p>
+                <div class="result-rewards" id="result-rewards" hidden></div>
+                <button class="primary-button" id="play-button">Play <svg class="icon"><use href="#icon-arrow"/></svg></button>
+                <button class="text-button overlay-secondary" id="overlay-secondary" hidden>Back to arcade</button>
+                <span class="sr-only overlay-hint" id="overlay-hint">SPACE TO JUMP</span>
+              </div>
+            </div>
+            <div class="board-toast" id="board-toast" role="status" aria-live="polite" hidden></div>
+            <button class="pause-button" id="pause-button" aria-label="Pause game" hidden><svg class="icon"><use href="#icon-pause"/></svg></button>
+          </div>
+          <div class="game-scorebar">
+            <div class="score-item"><svg class="icon points-icon"><use href="#icon-points"/></svg><div><span class="small-label">Course</span><strong><span id="course-count">0</span><span class="score-denominator">%</span></strong></div></div>
+            <span class="score-divider"></span>
+            <div class="score-item hearts-item"><div><span class="small-label">Hearts</span><strong id="heart-count" aria-label="3 of 3 hearts">♥♥♥</strong></div></div><div class="score-item energy-item"><span class="rainbow-bolt" aria-hidden="true">ϟ</span><div><span class="small-label">Energy</span><strong id="energy-count">0</strong></div></div><span class="sr-only" id="fall-count">0</span>
+            <div class="sr-only pace"><span class="status-dot"></span><span id="pace-label">A GENTLE START</span></div>
+          </div>
+          <p class="board-instructions" id="board-instructions"><span><kbd>←</kbd> <kbd>→</kbd> / <kbd>A</kbd> <kbd>D</kbd> Move</span><span><kbd>Space</kbd> Jump</span><span><kbd>X</kbd> Shoot</span><span><kbd>P</kbd> / <kbd>Esc</kbd> Pause</span></p>
+        </section>
+
+        <aside class="sidebar">
+          <section class="cat-profile" aria-labelledby="cat-name"><div class="portrait-scene"><canvas id="portrait-canvas" width="240" height="180" aria-label="Your cat, a cream pixel cat with pink ears"></canvas></div><div><h2 id="cat-name">Your cat</h2></div></section>
+
+          <section class="star-card" aria-labelledby="stars-title"><div class="section-title-row"><h2 id="stars-title">Stars</h2><span class="star-fraction"><span id="star-count">0</span><span> / 3</span></span></div>
+            <ol class="milestone-list">
+              <li data-milestone="0"><span class="milestone-star"><svg class="icon"><use href="#icon-star"/></svg></span><div><strong>Garden Roof</strong></div><span class="milestone-reward">+10 <svg class="icon"><use href="#icon-coin"/></svg></span></li>
+              <li data-milestone="1"><span class="milestone-star"><svg class="icon"><use href="#icon-star"/></svg></span><div><strong>Lantern Lane</strong></div><span class="milestone-reward">+10 <svg class="icon"><use href="#icon-coin"/></svg></span></li>
+              <li data-milestone="2"><span class="milestone-star"><svg class="icon"><use href="#icon-star"/></svg></span><div><strong>Home Stretch</strong></div><span class="milestone-reward">+10 <svg class="icon"><use href="#icon-coin"/></svg></span></li>
+            </ol>
+            <div class="next-milestone"><div><span id="next-label">To the finish</span><strong id="next-progress">0%</strong></div><div class="progress-track"><div id="milestone-fill"></div></div></div>
+            <p class="sr-only reward-note" id="reward-note"><svg class="icon"><use href="#icon-coin"/></svg> Each star brings 10 coins, just once.</p>
+          </section>
+
+          <button id="music-button" class="music-button" aria-pressed="false"><span aria-hidden="true">♫</span><span id="music-label">Music</span><span class="music-switch"><span></span></span></button>
+        </aside>
+      </div>
+      <p class="rooftop-save" id="save-status" role="status" hidden></p>
+    </main>
+  </div>
+
+  <dialog id="help-dialog" aria-labelledby="help-title"><button class="dialog-close" data-close="help-dialog" aria-label="Close instructions">×</button><h2 id="help-title">How to play</h2><p data-i18n-block="rooftop-help-p-0"><strong>← / → or A / D</strong> to run; <strong>Space, ↑, or W</strong> to jump. Hold longer to jump higher.</p><ul><li data-i18n-block="rooftop-help-li-1">Hit <strong>? boxes from below</strong>: a 50% chance of <strong>3 energy</strong> or <strong>1 heart</strong> (max 3 hearts). Each box opens once per run.</li><li data-i18n-block="rooftop-help-li-2">Press <strong>X</strong> to spend 1 energy and stun a cat for <strong>5 seconds</strong>. Jump on it while stunned to defeat it.</li><li data-i18n-block="rooftop-help-li-3">Falling or touching an active enemy costs <strong>1 heart</strong> and returns you to a checkpoint. Lose all 3 hearts and the run ends.</li><li data-i18n-block="rooftop-help-li-4">Find <strong>three stars</strong>, one in each section. Each new star gives <strong>10 coins</strong>, once. Collected stars stay saved and disappear on replays.</li><li data-i18n-block="rooftop-help-li-5">Green flags mark <strong>4 checkpoints</strong>. A brief shield protects you after respawning.</li><li data-i18n-block="rooftop-help-li-6">Reach the <strong>flag beside the green door</strong> to finish. Replay to find any missed stars.</li></ul><p data-i18n-block="rooftop-help-p-1"><strong>P or Escape</strong> pauses or resumes. Switching tabs pauses automatically.</p><button class="primary-button" data-close="help-dialog">Got it <svg class="icon"><use href="#icon-paw"/></svg></button></dialog>
+  <dialog id="collection-dialog" aria-labelledby="collection-title"><button class="dialog-close" data-close="collection-dialog" aria-label="Close collection">×</button><h2 id="collection-title">Your rewards</h2><div class="collection-totals"><div><svg class="icon"><use href="#icon-star"/></svg><strong id="collection-stars">0 / 3</strong><span>Rooftop Run stars</span></div><div><svg class="icon"><use href="#icon-coin"/></svg><strong id="collection-coins">0 / 30</strong><span>Coins collected</span></div></div><p data-i18n-block="rooftop-rewards-p-0">Each new star gives <strong>10 coins</strong>, once. Rewards stay saved after every round.</p><p class="collection-future" data-i18n-block="rooftop-rewards-p-1"><a href="./shop.html">Visit the costume shop ↗</a></p><button class="primary-button" data-close="collection-dialog">Back to the game <svg class="icon"><use href="#icon-paw"/></svg></button></dialog>
+  <div class="sr-only" id="live-announcement" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>
